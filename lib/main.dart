@@ -12,8 +12,9 @@ void main() async {
   Hive.registerAdapter(TaskAdapter());
   Hive.registerAdapter(PriorityAdapter());
   await Hive.openBox<Task>('tasks');
-  SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarBrightness: Brightness.light));
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Color(0xff794CFF),
+      statusBarBrightness: Brightness.light));
   runApp(const MyApp());
 }
 
