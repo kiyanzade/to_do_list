@@ -142,6 +142,7 @@ class HomeScreen extends StatelessWidget {
                         },
                         controller: controller,
                         decoration: InputDecoration(
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
                           label: Text('Search tasks...'),
                           prefixIcon: Icon(CupertinoIcons.search),
                         )),
