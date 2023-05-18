@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:to_do_list/main.dart';
 
-import 'data.dart';
+import '../../data/data.dart';
+import '../../data/repo/repository.dart';
+
+
 
 class EditTaskScreen extends StatefulWidget {
   final Task task;
@@ -43,13 +47,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
         onPressed: () {
           widget.task.name = _controller.text;
           widget.task.priority = widget.task.priority;
-          if (widget.task.isInBox) {
-            widget.task.save();
-          } else {
-            final Box<Task> box = Hive.box('tasks');
-            box.add(widget.task);
-          }
-
+          final repository = Provider.of<Repository<Task>>(context,listen: false);
+          repository.createOrUpdate(widget.task);
           Navigator.of(context).pop();
         },
       ),
